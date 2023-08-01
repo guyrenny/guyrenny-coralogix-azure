@@ -36,5 +36,7 @@ jobs:
         read -ra changed_files_array <<< "$changed_files_string"
         chmod +x scripts/changelog_check.sh
         for changed_file in "${changed_files_array[@]}"; do
-          scripts/changelog_check.sh  $(echo "$changed_file)" | cut -d "/" -f1)
+          if [[ "$changed_file" == *"/main.tf" ]]; then
+            scripts/changelog_check.sh $(dirname $changed_file)
+          fi
         done
