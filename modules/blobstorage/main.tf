@@ -10,7 +10,7 @@ locals {
     Custom    = var.CustomDomain
   }
   sku = var.FunctionAppServicePlanType == "Consumption" ? "Y1" : "EP1"
-}
+}.
 
 resource "random_string" "this" {
   length  = 13
